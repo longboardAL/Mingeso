@@ -31,9 +31,9 @@ public class HoraExtraService {
     @Autowired
     OficinaRRHH oficinaRRHH;
 
-
-    private String folder="C:\\Users\\angel\\Desktop\\Mingeso\\testing-webapp\\testing-webapp\\cargas\\";
-    private String archivo = "\\HorasExtras.txt";
+    private String slach = File.separator;
+    private String folder="cargas"+slach;
+    private String archivo = slach+"HorasExtras.txt";
     private final Logger logg = LoggerFactory.getLogger(HoraExtraService.class);
     public String saveFileHoraExtra(MultipartFile file) {
         if (!file.isEmpty()) {
