@@ -31,17 +31,14 @@ public class HoraExtraService {
     @Autowired
     OficinaRRHH oficinaRRHH;
 
-    private String slach = File.separator;
-    private String folder="cargas"+slach;
-    private String archivo = slach+"HorasExtras.txt";
+    private String folder="cargas/";
+    private String archivo = "/HorasExtras.txt";
     private final Logger logg = LoggerFactory.getLogger(HoraExtraService.class);
     public String saveFileHoraExtra(MultipartFile file) {
         if (!file.isEmpty()) {
             try {
                 byte [] bytes= file.getBytes();
                 Path path = Paths.get(folder, file.getOriginalFilename());
-                System.out.println(path);
-                System.out.println(bytes);
                 try {
                     Files.write(path, bytes);
                     logg.info("Archivo guardado");

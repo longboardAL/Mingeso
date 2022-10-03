@@ -13,6 +13,8 @@ services:
   app:
     container_name: app-web-simple
     image: angelavendano/entrega_1
+    volumes:
+      - cargas:/cargas
     ports:
       - "8090:8090"
     environment:
@@ -26,3 +28,4 @@ services:
       - mysql-db
 volumes:
   mysql-data:
+  cargas:

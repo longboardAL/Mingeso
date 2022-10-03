@@ -28,8 +28,8 @@ public class JustificativoService {
     @Autowired
     OficinaRRHH oficinaRRHH;
 
-    private String folder="C:\\Users\\angel\\Desktop\\Mingeso\\testing-webapp\\testing-webapp\\cargas\\";
-    private String archivo = "\\Justificativos.txt";
+    private String folder="cargas/";
+    private String archivo = "/Justificativos.txt";
     private final Logger logg = LoggerFactory.getLogger(JustificativoService.class);
 
     public String saveFileJustificativo(MultipartFile file) {
@@ -75,7 +75,6 @@ public class JustificativoService {
             justificativoRepository.save(justificativo);
             // Volver a leer otra línea del fichero
             linea = bufferLectura.readLine();
-
         }
         return "Archivo guardado";
     }

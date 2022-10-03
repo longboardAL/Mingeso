@@ -27,8 +27,8 @@ public class MarcasRelojService {
     @Autowired
     MarcasRelojRepository marcasRelojRepository;
 
-    private String folder="C:\\Users\\angel\\Desktop\\Mingeso\\testing-webapp\\testing-webapp\\cargas\\";
-    private String archivo = "\\DATA.txt";
+    private String folder="cargas/";
+    private String archivo = "/DATA.txt";
     private final Logger logg = LoggerFactory.getLogger(MarcasRelojService.class);
 
     public String saveFileIngreso(MultipartFile file) {
