@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Service
@@ -103,6 +104,32 @@ public class HoraExtraService {
                 //una vez obtenida la hora extra, calculo el monto de esa hora extra
                 totalHoras = totalHoras + horaActual;
                 System.out.println("Usuario hora extra: "+ horaExtraRepository.findAll().get(j) +" hrs : "+hour+" Total: "+totalHoras);
+            }
+        }
+
+        return totalHoras;
+    }
+
+    public long calculoHorasExtras2(String rut, String categoria, ArrayList<HoraExtraEntity> horaExtraEntities, OficinaRRHH oficinaRRHH) throws ParseException {
+
+        DateFormat formato =  new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        java.util.Date salida = formato.parse("2022/03/26 18:00");
+        long hour = 0;
+        long totalHoras = 0;
+        long horaActual = 0;
+
+        for(int j = 0; j < horaExtraEntities.size(); j++){
+            if((horaExtraEntities.get(j).getAutorizacion().equals("Autorizado"))&&(horaExtraEntities.get(j).getRut().equals(rut))){
+
+                long l = Math.abs((salida.getTime()-horaExtraEntities.get(j).getFechaAutorizada().getTime()));
+                hour = ((l/(60*60*1000))%24) - 1;
+                if(hour < 0){
+                    hour = 0;
+                }
+                horaActual = oficinaRRHH.calcularBonificacionPorHorasExtras(hour, categoria);
+                //una vez obtenida la hora extra, calculo el monto de esa hora extra
+                totalHoras = totalHoras + horaActual;
+                //System.out.println("Usuario hora extra: "+ horaExtraRepository.findAll().get(j) +" hrs : "+hour+" Total: "+totalHoras);
             }
         }
 
